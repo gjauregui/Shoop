@@ -12,6 +12,14 @@ class Utils{
         return $name;
     }
 
+    public static function verifyAdmin(){
+        if(!isset($_SESSION['admin'])){
+            unset($_SESSION['admin']);
+            header("Location: ".base_url);
+        }else {
+            return true;
+        }
+    }
 
 
 }
