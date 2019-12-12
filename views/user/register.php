@@ -2,7 +2,7 @@
 <?php if(isset($_SESSION['register']) && $_SESSION['register'] == "complete"):?>
         <strong class="alert_green">Registro Completado correctamente</strong>
 <?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == "failed"):?>
-        <strong class="alert_red">Registro fallido, intrude los datos correctamente</strong>
+        <strong class="alert_red">Registro fallido, introduce los datos correctamente</strong>
 <?php endif;?>
 <?php Utils::deleteSession('register');?>
 

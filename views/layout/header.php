@@ -20,24 +20,18 @@
         </div>
     </header>
 
+    <?php $objcat = Utils::menuCategories();?>
     <!-- MENU -->
     <nav id="menu">
         <ul>
             <li>
-                <a href="">Inicio</a>
+                <a href="<?=base_url?>">Inicio</a>
             </li>
+        <?php foreach ($objcat as $key => $value):?>
             <li>
-                <a href="">Categoria 2</a>
+                <a href=""><?=$value['nombre'] ?></a>
             </li>
-            <li>
-                <a href="">Categoria 3</a>
-            </li>
-            <li>
-                <a href="">Categoria 4</a>
-            </li>
-            <li>
-                <a href="">Categoria 5</a>
-            </li>
+        <?php endforeach;?>    
         </ul>
     </nav>
 

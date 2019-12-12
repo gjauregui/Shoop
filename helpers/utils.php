@@ -21,5 +21,12 @@ class Utils{
         }
     }
 
+    public static function menuCategories(){
+        require_once 'models/CategoriesModel.php';
+
+        $categorias = (new CategoriesModel)->getAll();
+        
+        return $categorias;
+    }
 
 }

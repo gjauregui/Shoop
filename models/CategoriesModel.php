@@ -33,11 +33,25 @@ class CategoriesModel{
     public function getAll(){
         $result = false;
 
-        $cat = $this->con->prepare("SELECT id, nombre from Categories");
+        $cat = $this->con->prepare("SELECT id, nombre from Categories ORDER BY id DESC");
 
         if($cat->execute()){
             $result = $cat->fetchAll();
         }
         return $result;
+    }
+
+    public function save(){
+
+        $resut = false;
+
+        $insert = $this->con->prepare("INSERT INTO Categories VALUES(NULL,'{$this->getNombre()}')");
+
+        if($insert->execute()){
+            $result = true;
+        }
+
+        return $result;
+
     }
 }
