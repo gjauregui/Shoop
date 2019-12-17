@@ -33,7 +33,7 @@ $stock = $datos->stock ?? '1';
         <?php if(isset($datos->imagen) && !empty($datos->imagen)):?>
             <img src="<?=base_url?>uploads/images/<?=$datos->imagen?>" class="thumb"/>
         <?php endif;?>
-        <input type="file" name="image" />
+        <input type="file" name="image" value="<?=$datos->imagen?>"/>
         
         <input type="submit" value="Guardar" />
 

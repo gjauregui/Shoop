@@ -29,7 +29,7 @@
             </li>
         <?php foreach ($objcat as $key => $value):?>
             <li>
-                <a href=""><?=$value['nombre'] ?></a>
+                <a href="<?=base_url.'Categories/viewCat&id='.$value['id']?>"><?=$value['nombre'] ?></a>
             </li>
         <?php endforeach;?>    
         </ul>

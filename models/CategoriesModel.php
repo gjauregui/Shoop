@@ -9,7 +9,7 @@ class CategoriesModel{
         $this->con = new Connect();
     }
 
-    public function getID(){
+    public function getId(){
         return $this->id;
     }
 
@@ -53,5 +53,16 @@ class CategoriesModel{
 
         return $result;
 
+    }
+
+    public function viewCat(){
+        $result = false;
+
+        $stm = $this->con->prepare("SELECT * FROM Categories WHERE id = {$this->getId()} ORDER BY id DESC");
+
+        if($stm->execute()){
+            $result = $stm->fetchObject();
+        }
+        return $result;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once 'models/CategoriesModel.php';
+require_once 'models/ProductsModel.php';
 
 class CategoriesController
 {
@@ -43,5 +44,28 @@ class CategoriesController
             }
         }
         header("Location: ".base_url.'Categories/index');
+    }
+
+    public function viewCat(){
+
+        $id = $_GET['id'] ?? false;
+
+        if($id){
+
+            $objcat = new CategoriesModel();
+
+            $objcat->setId($id);
+
+            $cat = $objcat->viewCat();
+
+            $objProd = new ProductsModel();
+
+            $objProd->__set('categoria_id',$id);
+
+            $prod=$objProd->getProdCategories();
+
+            require_once 'views/categories/ver.php';
+        }
+
     }
 }
