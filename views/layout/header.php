@@ -10,28 +10,29 @@
 </head>
 
 <body>
-    <div id="container"> 
+    <div id="container">
 
-    <!-- CABECERA -->
-    <header id="header">
-        <div id="logo">
-            <img src="<?=base_url?>assets/img/camiseta.png" alt="Camiseta Logo" />
-            <a href="index.php">Tienda de Camisetas</a>
-        </div>
-    </header>
+        <!-- CABECERA -->
+        <header id="header">
+            <div id="logo">
+                <img src="<?=base_url?>assets/img/camiseta.png"
+                    alt="Camiseta Logo" />
+                <a href="index.php">Tienda de Camisetas</a>
+            </div>
+        </header>
 
-    <?php $objcat = Utils::menuCategories();?>
-    <!-- MENU -->
-    <nav id="menu">
-        <ul>
-            <li>
-                <a href="<?=base_url?>">Inicio</a>
-            </li>
-        <?php foreach ($objcat as $key => $value):?>
-            <li>
-                <a href="<?=base_url.'Categories/viewCat&id='.$value['id']?>"><?=$value['nombre'] ?></a>
-            </li>
-        <?php endforeach;?>    
-        </ul>
-    </nav>
-
+        <?php $objcat = Utils::menuCategories();?>
+        <!-- MENU -->
+        <nav id="menu">
+            <ul>
+                <li>
+                    <a href="<?=base_url?>">Inicio</a>
+                </li>
+                <?php foreach ($objcat as $key => $value):?>
+                <li>
+                    <a
+                        href="<?=base_url.'Categories/getProdCategories&id='.$value['id']?>"><?=$value['nombre'] ?></a>
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </nav>

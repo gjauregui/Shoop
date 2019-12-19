@@ -51,9 +51,7 @@ class ProductsModel
     public function getProdCategories()
     {
         $result = false;
-
-        //$sql = "SELECT * from Products WHERE categorie_id = {$this->__get('categoria_id')}";
-        
+     
         $stm = $this->con->prepare("SELECT p.*,c.nombre AS 'catName' from Products p INNER JOIN Categories c ON C.id = p.categorie_id WHERE p.categorie_id ={$this->__get('categoria_id')} ORDER BY p.id DESC");
         
         if ($stm->execute()) {

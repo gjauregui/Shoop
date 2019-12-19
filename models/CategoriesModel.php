@@ -1,66 +1,73 @@
 <?php
-class CategoriesModel{
-
+class CategoriesModel
+{
     private $id;
     private $nombre;
     private $con;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->con = new Connect();
     }
 
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getNombre(){
+    public function getNombre()
+    {
         return $this->nombre;
     }
 
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function setNombre($nombre){
+    public function setNombre($nombre)
+    {
         $this->nombre = $nombre;
     }
 
-    public function index(){
+    public function index()
+    {
         echo "Hola mundo desde el modelo";
     }
 
 
-    public function getAll(){
+    public function getAll()
+    {
         $result = false;
 
         $cat = $this->con->prepare("SELECT id, nombre from Categories ORDER BY id DESC");
 
-        if($cat->execute()){
+        if ($cat->execute()) {
             $result = $cat->fetchAll();
         }
         return $result;
     }
 
-    public function save(){
-
+    public function save()
+    {
         $resut = false;
 
         $insert = $this->con->prepare("INSERT INTO Categories VALUES(NULL,'{$this->getNombre()}')");
 
-        if($insert->execute()){
+        if ($insert->execute()) {
             $result = true;
         }
 
         return $result;
-
     }
 
-    public function viewCat(){
+    public function findCat()
+    {
         $result = false;
 
         $stm = $this->con->prepare("SELECT * FROM Categories WHERE id = {$this->getId()} ORDER BY id DESC");
 
-        if($stm->execute()){
+        if ($stm->execute()) {
             $result = $stm->fetchObject();
         }
         return $result;

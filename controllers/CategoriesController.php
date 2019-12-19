@@ -46,17 +46,16 @@ class CategoriesController
         header("Location: ".base_url.'Categories/index');
     }
 
-    public function viewCat()
+    public function getProdCategories()
     {
         $id = $_GET['id'] ?? false;
         $prod = [];
         $categoryName = '';
 
         if ($id) {
-
             $objcat = new CategoriesModel();
             $objcat->setId($id);
-            $cat = $objcat->viewCat();
+            $cat = $objcat->findCat();
 
             if ($cat) {
                 $objProd = new ProductsModel();
