@@ -34,38 +34,39 @@ class CategoriesController
                 
                 $objcat->save();
 
-                if($objcat){
+                if ($objcat) {
                     $_SESSION['add'] = "complete";
-                }else {
+                } else {
                     $_SESSION['add'] = "failed";
                 }
-            }else {
+            } else {
                 $_SESSION['add'] = "failed";
             }
         }
         header("Location: ".base_url.'Categories/index');
     }
 
-    public function viewCat(){
-
+    public function viewCat()
+    {
         $id = $_GET['id'] ?? false;
+        $prod = [];
+        $categoryName = '';
 
-        if($id){
+        if ($id) {
 
             $objcat = new CategoriesModel();
-
             $objcat->setId($id);
-
             $cat = $objcat->viewCat();
 
-            $objProd = new ProductsModel();
+            if ($cat) {
+                $objProd = new ProductsModel();
+                $objProd->__set('categoria_id', $cat->id);
+                $prod = $objProd->getProdCategories();
 
-            $objProd->__set('categoria_id',$id);
-
-            $prod=$objProd->getProdCategories();
+                $categoryName = $cat->nombre;
+            }
 
             require_once 'views/categories/ver.php';
         }
-
     }
 }

@@ -48,16 +48,18 @@ class ProductsModel
         return $result;
     }
 
-    public function getProdCategories(){
+    public function getProdCategories()
+    {
         $result = false;
 
-        $stm = $this->con->prepare("SELECT * from Products WHERE categorie_id = {$this->__get('categoria_id')}");
+        //$sql = "SELECT * from Products WHERE categorie_id = {$this->__get('categoria_id')}";
         
-        if($stm->execute()){
+        $stm = $this->con->prepare("SELECT p.*,c.nombre AS 'catName' from Products p INNER JOIN Categories c ON C.id = p.categorie_id WHERE p.categorie_id ={$this->__get('categoria_id')} ORDER BY p.id DESC");
+        
+        if ($stm->execute()) {
             $result = $stm->fetchAll();
         }
         return $result;
-
     }
 
     public function save()
@@ -87,20 +89,20 @@ class ProductsModel
 
         $stm = $this->con->prepare("SELECT * FROM Products WHERE id={$this->__get('id')}");
 
-        if ($stm->execute()) {       
+        if ($stm->execute()) {
             $result = $stm->fetchObject();
         }
 
         return $result;
     }
 
-    public function edit(){
-
+    public function edit()
+    {
         $result = false;
 
         $sql = "UPDATE Products SET categorie_id = {$this->__get('categoria_id')},nombre ='{$this->__get('nombre')}',descripcion='{$this->__get('descripcion')}',precio={$this->__get('precio')},stock={$this->__get('stock')}";
 
-        if($this->__get('imagen') != null){
+        if ($this->__get('imagen') != null) {
             $sql.= ",imagen='{$this->__get('imagen')}'";
         }
 
@@ -108,24 +110,22 @@ class ProductsModel
 
         $stm = $this->con->prepare($sql);
 
-        if($stm->execute()){
+        if ($stm->execute()) {
             $result = true;
         }
         
         return $result ;
     }
 
-    public function getRandom($limit){
-
+    public function getRandom($limit)
+    {
         $result  = false;
 
         $stm = $this->con->prepare("SELECT * FROM PRODUCTS ORDER BY RAND() LIMIT $limit ");
 
-        if($stm->execute()){
-           $result = $stm->fetchAll();
+        if ($stm->execute()) {
+            $result = $stm->fetchAll();
         }
         return $result;
     }
-
-
 }
