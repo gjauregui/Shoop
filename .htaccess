@@ -3,7 +3,7 @@
 
 RewriteEngine on
 
-ErrorDocument 404 http://localhost:8080/PHP/PHP-POO-MVC/error/
+ErrorDocument 404 http://localhost/Proyects/Shoop/error/
 
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
